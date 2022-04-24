@@ -17,27 +17,26 @@ CFLAGS := ${CFLAGS}
 CC     ?= gcc
 LD     ?= gcc
 
-INC_FLAGS := -Ilibs/libft/
-LIBS := -Llibs/libft -lft -lmlx
+INC_FLAGS := -I libft/
+LIBFT := -Llibft -lft 
 
 UNAME = $(shell uname -s)
 ifeq ($(UNAME), Linux)
 	NPROC := $(shell nproc)
-	LIBS += -lmlx -lXext -lX11 -lm -lbsd
+	LIBFT += -lmlx -lXext -lX11 -lm -lbsd
 else
 	NPROC := $(shell sysctl -n hw.ncpu)
-	INC_FLAGS += -Ilibs/mlx
-    LIBS += -Llibs/mlx -framework OpenGL -framework Appkit
+
 endif
 
 MAKEFLAGS += --output-sync=target
 MAKEFLAGS += --no-print-directory
 
-NAME ?= fract-ol
+NAME ?= push_swap
 
 BUILD_DIR ?= ./build
 SRC_DIRS ?= ./srcs
-INCLUDE_DIR ?= ./includes
+INCLUDE_DIR ?= ./include
 
 SRCS := $(shell find $(SRC_DIRS) -name '*.c')
 OBJS := $(SRCS:%=$(BUILD_DIR)/%.o)
@@ -45,9 +44,9 @@ OBJS := $(SRCS:%=$(BUILD_DIR)/%.o)
 INC_DIRS := $(shell find $(INCLUDE_DIR) -type d)
 INC_FLAGS += $(addprefix -I,$(INC_DIRS))
 
-LIB    := libs/libft/libft.a
+LIB    := libft/libft.a
 
-CFLAGS += -Wall -Wextra -Werror
+CFLAGS += -c -Wall -Wextra -Werror
 CFLAGS += -std=c99 -pedantic
 CFLAGS += -O2 -march=native
 #CFLAGS += -g3 -fsanitize=address -v
@@ -65,21 +64,19 @@ $(BUILD_DIR)/%.c.o: %.c
 	@$(CC) -c  $(CFLAGS) $(INC_FLAGS) $< -o $@
 
 $(LIB):
-	@$(MAKE) -C libs/libft
-	@$(MAKE) -C libs/mlx
+	@$(MAKE) -C libft
 	@echo Libft done
 	@echo GNL done
 
 clean:
 	@rm -rf $(BUILD_DIR)
-	@$(MAKE) -C libs/libft clean
-	@$(MAKE) -C libs/mlx clean
+	@$(MAKE) -C libft clean
 	@echo Clean done
 
 fclean:
 	@rm -rf $(BUILD_DIR)
 	@rm -f $(NAME)
-	@$(MAKE) -C libs/libft fclean
+	@$(MAKE) -C libft fclean
 	@echo Fclean done
 
 re: fclean
