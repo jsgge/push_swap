@@ -1,6 +1,6 @@
 #include "push_swap.h"
 
-check_digit
+check_digit()
 {
 	int	i;
 	int	len;

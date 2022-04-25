@@ -6,20 +6,11 @@ int	main(int ac, char **av)
 	int	len;
 
 	i = 1;
-	if (ac == 1)
-		return(av[0]);
-	if (ac > 1)
-	{
-		while(ft_isdigit(ac[i]))
-		{
-			if (!ft_isdigit(ac[i]))
-				write(1, "Error\n", 6);
-			i++;
-		}
-	}
-	len = i;
-	i = 1;
+	check_digit();
 	check_double();
-	check_order();
-	push_swap();
+	a_sorted();
+	if (ac < 7)
+		sort_small_stack();
+	else 
+		sort_stack();
 }
