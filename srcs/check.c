@@ -1,6 +1,6 @@
 #include "push_swap.h"
 
-int	main(int ac, char **av)
+check_digit
 {
 	int	i;
 	int	len;
@@ -19,7 +19,14 @@ int	main(int ac, char **av)
 	}
 	len = i;
 	i = 1;
-	check_double();
-	check_order();
-	push_swap();
+}
+
+check_double()
+{
+
+}
+
+a_sorted()
+{
+ exit();
 }
