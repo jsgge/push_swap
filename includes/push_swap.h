@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fractol.h                                          :+:      :+:    :+:   */
+/*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jsage <jsage@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 17:19:05 by jsage             #+#    #+#             */
-/*   Updated: 2022/04/23 17:14:25 by jsage            ###   ########.fr       */
+/*   Updated: 2022/05/05 13:53:33 by jsage            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,22 @@
 # define RRB 10
 # define RRR 11
 
-typedef struct s_push
+typedef struct s_node t_node;
+struct s_node
 {
-	char	a,
-	char	b,
-}	t_push;
+	int	nb;
+	t_node *next;
+};
+
+typedef struct s_stack
+{
+	t_node	*top;
+	t_node	*bottom;
+}	t_stack;
+
+// INIT
+t_stack	*init_stack(void);
+void	fill_stack_a(t_stack *a, char **av);
+
 
 #endif
